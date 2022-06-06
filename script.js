@@ -7,5 +7,28 @@
  * * tilt and pressure are also tracked if you are using a pen device
  */
 
-const video = document.querySelector('.video');
-const timeline = document.querySelector(".timeline");
+document.addEventListener("pointerdown", e =>{
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    dot.id = e.pointerId;
+    positionDot(e,dot);
+});
+
+document.addEventListener("pointermove", e =>{
+    e.preventDefault();
+    const dot = document.getElementById(e.pointerId);
+    if(dot==null) return;
+    positionDot(e,dot);
+});
+
+document.addEventListener("pointercancel", ()=>{
+    console.log("cancel");
+})
+
+
+function positionDot(e,dot){
+    dot.style.width = `${e.width*10}px`;
+    dot.style.height = `${e.height*10}px`;
+    dot.style.left = `${e.pageX}px`;
+    dot.style.top = `${e.pageY}px`;
+}
