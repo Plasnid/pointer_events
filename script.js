@@ -21,8 +21,16 @@ document.addEventListener("pointermove", e =>{
     positionDot(e,dot);
 });
 
-document.addEventListener("pointercancel", ()=>{
-    console.log("cancel");
+document.addEventListener("pointerup", (e)=>{
+    const dot = document.getElementById(e.pointerId);
+    if(dot==null) return;
+    dot.remove();
+})
+
+document.addEventListener("pointercancel", (e)=>{
+    const dot = document.getElementById(e.pointerId);
+    if(dot==null) return;
+    dot.remove();
 })
 
 
