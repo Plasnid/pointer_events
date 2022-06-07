@@ -6,28 +6,33 @@
  * * height and width relate to how much of the screen you have touched
  * * tilt and pressure are also tracked if you are using a pen device
  */
+const video = document.querySelector(".video");
+console.log("bork!")
 
-document.addEventListener("pointerdown", e =>{
+video.addEventListener("pointerdown", e =>{
+    e.preventDefault();
+    console.log("down!");
     const dot = document.createElement("div");
     dot.classList.add("dot");
     dot.id = e.pointerId;
     positionDot(e,dot);
+    document.body.append(dot);
+    
 });
 
-document.addEventListener("pointermove", e =>{
-    e.preventDefault();
+video.addEventListener("pointermove", e => {
     const dot = document.getElementById(e.pointerId);
     if(dot==null) return;
-    positionDot(e,dot);
+    positionDot(e, dot);
 });
 
-document.addEventListener("pointerup", (e)=>{
+video.addEventListener("pointerup", (e)=>{
     const dot = document.getElementById(e.pointerId);
     if(dot==null) return;
     dot.remove();
 })
 
-document.addEventListener("pointercancel", (e)=>{
+video.addEventListener("pointercancel", (e)=>{
     const dot = document.getElementById(e.pointerId);
     if(dot==null) return;
     dot.remove();
